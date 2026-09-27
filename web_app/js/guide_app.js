@@ -226,7 +226,8 @@
       contentHtml = highlightText(contentHtml, searchQuery);
     }
     guideArticle.innerHTML = contentHtml;
-    guideArticle.scrollTop = 0;
+    const scrollEl = document.getElementById('articleScrollWrapper') || guideArticle;
+    scrollEl.scrollTop = 0;
 
     // Render Photo Scan
     guidePhotoImg.src = page.photoUrl;

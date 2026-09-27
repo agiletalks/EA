@@ -48,6 +48,34 @@ body.theme-dark {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+/* Modern sleek custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+body.theme-dark * {
+  scrollbar-color: #475569 transparent;
+}
+body.theme-dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+body.theme-dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }
 
 html, body {
@@ -473,14 +501,22 @@ body.theme-dark .page-nav-bar {
 /* ============================================================
    The Reading Canvas
    ============================================================ */
-.guide-article {
+.article-scroll-wrapper {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 40px 60px 80px 60px;
-  max-width: 860px;
-  margin: 0 auto;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  scroll-behavior: smooth;
+  background: var(--bg-app);
+}
+
+.guide-article {
+  width: 100%;
+  max-width: 860px;
+  padding: 44px 48px 100px 48px;
+  margin: 0 auto;
 }
 
 /* Article Typography */
@@ -496,10 +532,12 @@ body.theme-dark .page-nav-bar {
 
 .article-paragraph {
   margin-bottom: 20px;
-  font-size: 1em;
+  font-size: 1.02em;
   line-height: 1.85;
   color: var(--text-main);
-  text-align: justify;
+  text-align: left !important;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .concept-keyword {
@@ -852,4 +890,85 @@ mark.guide-highlight {
   color: #000;
   padding: 1px 3px;
   border-radius: 2px;
+}
+
+/* ============================================================
+   Facilitator Teaching Synthesis Card (導師教學梳理與心法筆記)
+   ============================================================ */
+.facilitator-synthesis-card {
+  margin: 32px 0 24px 0;
+  padding: 22px 24px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 5px solid #d97706;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.synthesis-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.synthesis-badge {
+  font-size: 11px;
+  font-weight: 700;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.synthesis-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.synthesis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.synthesis-item {
+  background: #ffffff;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #334155;
+}
+
+.synthesis-item-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.theme-dark .facilitator-synthesis-card {
+  background: #1e293b;
+  border-color: #334155;
+  border-left-color: #f59e0b;
+}
+
+body.theme-dark .synthesis-item {
+  background: #0f172a;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+body.theme-dark .synthesis-item-title {
+  color: #f1f5f9;
 }

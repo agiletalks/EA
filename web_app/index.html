@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotional Agility® 官方工作坊互動教學平台</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="brand-section">
+      <div class="brand-title">
+        <span>EMOTIONAL AGILITY<sup>®</sup></span>
+        <span class="brand-badge">EAC-C04-0061</span>
+      </div>
+    </div>
+
+    <!-- Center Module & Progress -->
+    <div class="nav-center">
+      <div id="moduleBadge" class="module-badge">
+        <span id="moduleName">載入中...</span>
+      </div>
+      <div class="slide-counter">
+        <span id="slideNumText">1</span> / <span id="totalSlidesText">180</span>
+      </div>
+      <div class="progress-track" title="課程進度">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Right Actions -->
+    <div class="header-actions">
+      <!-- Media Quick Trigger (Visible when slide has video) -->
+      <button id="btnMediaHeader" class="btn btn-media" style="display:none;" title="播放本頁官方教學影片 (M)">
+        🎬 播放影音
+      </button>
+
+      <!-- Stage Mode Toggle -->
+      <button id="btnStageMode" class="btn" title="切換投影大螢幕模式（隱藏側邊欄與干擾）">
+        📺 投影大螢幕模式
+      </button>
+
+      <!-- Whiteboard / Pen Toggle -->
+      <button id="btnToggleWhiteboard" class="btn" title="切換投影片即時批註筆 (B)">
+        ✏️ 畫筆批註
+      </button>
+
+      <!-- Thumbnails Drawer Toggle -->
+      <button id="btnThumbnails" class="btn" title="查看 180 頁投影片縮圖目錄">
+        📑 縮圖選單
+      </button>
+
+      <!-- Sidebar Toggle -->
+      <button id="btnToggleSidebar" class="btn btn-icon" title="展開/收合右側教學伴侶欄">
+        🗂️
+      </button>
+
+      <!-- Fullscreen -->
+      <button id="btnFullscreen" class="btn btn-icon" title="全螢幕模式 (F)">
+        ⛶
+      </button>
+
+      <!-- Lock Screen / Logout -->
+      <button id="btnLockScreen" class="btn btn-icon" title="安全鎖定畫面 / 登出 (L)">
+        🔒
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Viewport Area -->
+  <main class="app-container">
+    
+    <!-- Slide Viewport (Center) -->
+    <section class="slide-viewport">
+      
+      <!-- Slide Canvas Box (Strict 16:9 1:1 Aspect Ratio) -->
+      <div id="slideWrapper" class="slide-canvas-box slide-wrapper">
+        <img id="slideImage" class="slide-image" src="" alt="Slide Canvas">
+        <canvas id="annotationCanvas" class="annotation-canvas"></canvas>
+      </div>
+
+      <!-- Arrow Nav Buttons -->
+      <button id="btnPrev" class="nav-arrow prev" title="上一頁 (← / PageUp / Backspace)">❮</button>
+      <button id="btnNext" class="nav-arrow next" title="下一頁 (→ / PageDown / Space)">❯</button>
+
+
+      <!-- Whiteboard Toolbar (Visible when Pen active) -->
+      <div id="whiteboardToolbar" class="whiteboard-toolbar" style="display:none;">
+        <button id="wbPen" class="wb-btn active" title="原子筆">✏️</button>
+        <button id="wbHighlighter" class="wb-btn" title="螢光筆">🖍️</button>
+        <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.2);"></div>
+        <div class="color-dot" data-color="#ef4444" style="background:#ef4444; transform: scale(1.3);" title="紅色"></div>
+        <div class="color-dot" data-color="#f59e0b" style="background:#f59e0b;" title="橘黃色"></div>
+        <div class="color-dot" data-color="#10b981" style="background:#10b981;" title="綠色"></div>
+        <div class="color-dot" data-color="#3b82f6" style="background:#3b82f6;" title="藍色"></div>
+        <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.2);"></div>
+        <button id="wbClear" class="wb-btn" title="清除全部畫跡">🗑️</button>
+      </div>
+
+    </section>
+
+    <!-- Right Learning Companion Sidebar -->
+    <aside id="companionSidebar" class="companion-sidebar">
+      <!-- Tabs Header -->
+      <div class="sidebar-tabs">
+        <button class="tab-btn active" data-tab="tabReflection">💡 提問與筆記</button>
+        <button class="tab-btn" data-tab="tabStickies">📌 互動便箋牆</button>
+        <button class="tab-btn" data-tab="tabGuide">🎓 講師指南</button>
+      </div>
+
+      <!-- Tab 1: Powerful Questions & Personal Notes -->
+      <div id="tabReflection" class="tab-content active">
+        <!-- Powerful Questions Container -->
+        <div id="pqContainer"></div>
+
+        <!-- Note Taking Area -->
+        <div class="note-area">
+          <div class="note-label">
+            <span>📝 本頁課堂筆記與反思</span>
+            <span id="noteStatus" style="color: var(--accent-teal);">已自動儲存</span>
+          </div>
+          <textarea id="noteTextarea" class="note-textarea" placeholder="在此輸入您的想法、個人體悟、真實案例或行動承諾... (內容即時自動保存在您的瀏覽器中)"></textarea>
+          
+          <div class="note-actions">
+            <button id="btnClearNote" class="btn btn-icon" title="清空本頁筆記" style="font-size: 12px; color: var(--text-muted);">
+              清空
+            </button>
+            <button id="btnExportNotes" class="btn btn-primary" title="匯出完整工作坊筆記為 Markdown 檔">
+              📥 匯出全部筆記 (.md)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Sticky Notes Wall -->
+      <div id="tabStickies" class="tab-content">
+        <div class="sticky-container">
+          <div class="sticky-toolbar">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <select id="stickyColorSelect" class="btn" style="padding: 4px 8px; font-size: 12px;">
+                <option value="yellow">黃色便箋</option>
+                <option value="blue">藍色便箋</option>
+                <option value="green">綠色便箋</option>
+                <option value="pink">粉色便箋</option>
+              </select>
+              <button id="btnAddSticky" class="btn btn-primary" style="padding: 4px 10px; font-size: 12px;">
+                + 新增便箋
+              </button>
+            </div>
+            <span style="font-size: 11px; color: var(--text-muted);">可點擊文字直接編輯</span>
+          </div>
+
+          <div id="stickyGrid" class="sticky-grid"></div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Facilitator Guide -->
+      <div id="tabGuide" class="tab-content">
+        <div class="guide-card">
+          <div class="guide-header">📖 本頁單元與核心目標</div>
+          <div id="guideSlideTitle" style="font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px;"></div>
+          <div id="guideModule" style="color: var(--text-muted); font-size: 12px;"></div>
+        </div>
+
+        <div class="guide-card">
+          <div class="guide-header">🎬 影音教材對照</div>
+          <div id="guideMediaInfo" style="color: var(--text-muted); font-size: 12px; line-height: 1.6;"></div>
+        </div>
+
+        <div class="guide-card">
+          <div class="guide-header">🎙️ 原廠備忘與引導提示</div>
+          <div id="guideNotesText" style="color: var(--text-muted); font-size: 12px; line-height: 1.6;"></div>
+        </div>
+
+        <div class="guide-card" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.05);">
+          <div class="guide-header" style="color: var(--accent-teal);">💡 認證講師授課心法</div>
+          <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+            • <b>尊重原稿版權</b>：中央投影嚴格維持 1:1 原稿渲染，保證 EAC 講師合規。<br>
+            • <b>保持張力</b>：遇到學員提出情緒卡點時，運用 <i>Bothness</i> 技巧，容許張力停留，不急於給予廉價安慰。
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Video Player Modal (100% Local 4K/1080P Offline Video) -->
+  <div id="mediaModal" class="modal-overlay">
+    <div class="video-modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span id="modalTitle">教學影片</span>
+          <span id="modalBadge" class="modal-badge">4K 高畫質</span>
+        </div>
+        <div class="modal-actions" style="display:flex; align-items:center; gap:16px;">
+          <!-- Subtitle Control Bar -->
+          <div class="sub-control-group" id="subControlGroup">
+            <span class="sub-label">💬 字幕:</span>
+            <button class="sub-btn active" data-sub="zh" id="btnSubZh" title="繁體中文字幕 (快速鍵 C 切換)">繁體中文</button>
+            <button class="sub-btn" data-sub="en" id="btnSubEn" title="English Subtitles (快速鍵 C 切換)">English</button>
+            <button class="sub-btn" data-sub="off" id="btnSubOff" title="關閉字幕 (快速鍵 C 切換)">關閉</button>
+          </div>
+          <button id="modalClose" class="modal-close" title="關閉 (Esc)">✕</button>
+        </div>
+      </div>
+      <div class="video-container">
+        <video id="localVideoPlayer" controls controlslist="nodownload" preload="metadata" crossorigin="anonymous">
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thumbnails Drawer -->
+  <div id="drawerOverlay" class="drawer-overlay"></div>
+  <div id="thumbnailDrawer" class="thumbnail-drawer">
+    <div class="drawer-header">
+      <div style="font-weight: 700; font-size: 14px; color: #fff;">180 頁課程縮圖索引 (點擊任一頁快速跳轉)</div>
+      <button id="btnCloseDrawer" class="btn btn-icon" style="font-size: 12px;">收合 ✕</button>
+    </div>
+    <div id="drawerScroll" class="drawer-scroll"></div>
+  </div>
+
+  <!-- Layer 2: Security Auth Gate Modal (Dual Password/Credentials Shield) -->
+  <div id="authGateModal" class="auth-gate-modal">
+    <div class="auth-card">
+      <div class="auth-icon-badge">🔐</div>
+      <h2 class="auth-title">Emotional Agility® 官方教學平台</h2>
+      <p class="auth-subtitle">認證講師授權專用入口 · Percy Pofeng Hsu (EAC-C04-0061)</p>
+      
+      <form id="authForm" class="auth-form" autocomplete="on">
+        <div class="auth-field">
+          <label for="authUser" class="auth-label">講師帳號 (Username)</label>
+          <input type="text" id="authUser" class="auth-input" placeholder="請輸入帳號" required autocomplete="username">
+        </div>
+        
+        <div class="auth-field">
+          <label for="authPass" class="auth-label">授權密碼 (Password)</label>
+          <input type="password" id="authPass" class="auth-input" placeholder="請輸入密碼" required autocomplete="current-password">
+        </div>
+        
+        <div id="authError" class="auth-error-msg" style="display:none;">
+          ⚠️ 帳號或密碼錯誤，請重新確認後輸入！
+        </div>
+        
+        <button type="submit" id="btnAuthSubmit" class="btn-auth-submit">
+          🚀 驗證並解鎖教材
+        </button>
+      </form>
+      
+      <div class="auth-security-notice">
+        <span>🛡️ 雙層授權防護已啟用 · 原廠合規單機離線保護</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/slides_data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

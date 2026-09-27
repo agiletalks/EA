@@ -1,0 +1,47 @@
+{
+  "language": "en",
+  "segments": [
+    {
+      "id": 1,
+      "start": 0.0,
+      "end": 7.28,
+      "text": "One of the most powerful questions you can ask yourself is is your action bringing you towards your values or is your action"
+    },
+    {
+      "id": 2,
+      "start": 7.28,
+      "end": 9.28,
+      "text": "Taking you away from your values"
+    },
+    {
+      "id": 3,
+      "start": 9.92,
+      "end": 15.2,
+      "text": "Every day we are faced with countless opportunities to move toward or away"
+    },
+    {
+      "id": 4,
+      "start": 15.92,
+      "end": 20.16,
+      "text": "Should I speak up or be quiet in a difficult conversation?"
+    },
+    {
+      "id": 5,
+      "start": 20.8,
+      "end": 27.04,
+      "text": "Should I reach out for a hug at the end of the day when I see my partner or just get on with my phone"
+    },
+    {
+      "id": 6,
+      "start": 27.92,
+      "end": 34.4,
+      "text": "Asking ourselves this question will my action bring me toward my values or away from my values"
+    },
+    {
+      "id": 7,
+      "start": 34.72,
+      "end": 38.96,
+      "text": "Is one of the most effective ways to ground yourself in intentional living"
+    }
+  ]
+}

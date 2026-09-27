@@ -1,0 +1,65 @@
+{
+  "language": "en",
+  "segments": [
+    {
+      "id": 1,
+      "start": 0.0,
+      "end": 5.92,
+      "text": "Showing yourself compassion is difficult during love's toughest moments, but that's exactly"
+    },
+    {
+      "id": 2,
+      "start": 5.92,
+      "end": 7.92,
+      "text": "when you need it the most."
+    },
+    {
+      "id": 3,
+      "start": 7.92,
+      "end": 12.2,
+      "text": "I love Dr. Kristen F's work on self-compassion."
+    },
+    {
+      "id": 4,
+      "start": 12.2,
+      "end": 16.4,
+      "text": "She suggests three core steps to self-compassion."
+    },
+    {
+      "id": 5,
+      "start": 16.4,
+      "end": 21.36,
+      "text": "First is to recognise your suffering, to acknowledge it."
+    },
+    {
+      "id": 6,
+      "start": 21.36,
+      "end": 27.24,
+      "text": "Second is to move towards that suffering with a level of kindness and empathy."
+    },
+    {
+      "id": 7,
+      "start": 27.24,
+      "end": 34.6,
+      "text": "And third is to acknowledge your suffering in the context of human suffering, that human"
+    },
+    {
+      "id": 8,
+      "start": 34.6,
+      "end": 41.08,
+      "text": "beings often suffer and experience these moments of doubt and shame."
+    },
+    {
+      "id": 9,
+      "start": 41.08,
+      "end": 43.6,
+      "text": "You are not alone."
+    },
+    {
+      "id": 10,
+      "start": 43.6,
+      "end": 48.12,
+      "text": "I remind myself of these, and it's so helpful for you to do the same."
+    }
+  ]
+}

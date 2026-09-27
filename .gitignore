@@ -1,0 +1,18 @@
+# OS & Editor files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Large binary slide deck (>100MB, slides extracted to slides_extracted/)
+*.pptx
+
+# Temporary analysis frames and tools
+frame_samples/
+tools/yt-dlp.exe
+node_modules/
+.cache/
+compress_large_videos.ps1
+practitioner guide/_unrelated_media/
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotional Agility® Practitioner Guide 教師手冊數位閱讀器</title>
+  <link rel="stylesheet" href="css/guide.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%3E%3Ctext y=%2226%22 font-size=%2224%22>📖</text></svg>">
+</head>
+<body class="theme-dark">
+  <!-- Auth Gate Modal -->
+  <div id="authGateModal" class="auth-modal-overlay">
+    <div class="auth-modal-box">
+      <div class="auth-modal-icon">🔐</div>
+      <h2>Emotional Agility® 導師授權專區</h2>
+      <p>此區為 Practitioner Guide 認證導師手冊，請輸入認證帳號與密碼解鎖閱讀。</p>
+      <form id="authForm" onsubmit="event.preventDefault(); window.GuideApp.submitAuth();">
+        <div class="auth-field">
+          <label>帳號 (Username)</label>
+          <input type="text" id="authUsername" placeholder="請輸入帳號" required autocomplete="username">
+        </div>
+        <div class="auth-field">
+          <label>密碼 (Password)</label>
+          <input type="password" id="authPassword" placeholder="請輸入密碼" required autocomplete="current-password">
+        </div>
+        <div id="authErrorMsg" class="auth-error-msg"></div>
+        <button type="submit" class="auth-submit-btn">驗證並進入閱讀器</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- App Header -->
+  <header class="guide-header">
+    <div class="header-left">
+      <a href="index.html" class="nav-back-btn" title="返回 180 頁投影講義">
+        <span>🖥️</span> 投影講義
+      </a>
+      <div class="header-title-group">
+        <h1 class="header-main-title">Emotional Agility®</h1>
+        <span class="header-sub-badge">Practitioner Guide 導師手冊</span>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="guideSearchInput" placeholder="全冊搜尋 (如: Room Map, Vault, Do/Say, 鉤子...)" autocomplete="off">
+      <button id="guideSearchClear" class="search-clear-btn" style="display:none;" title="清除搜尋">✕</button>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- Font size controls -->
+      <div class="font-controls" title="調整閱讀字體大小">
+        <button id="btnFontDec" class="tool-btn">A-</button>
+        <span id="fontScaleDisplay" class="font-scale-text">100%</span>
+        <button id="btnFontInc" class="tool-btn">A+</button>
+      </div>
+
+      <!-- Toggle Photo Split View -->
+      <button id="btnTogglePhoto" class="tool-btn btn-photo-toggle" title="切換原書掃描圖對照 (快捷鍵: P)">
+        <span class="icon">📷</span> 原書對照
+      </button>
+
+      <!-- Theme Toggle -->
+      <button id="btnToggleTheme" class="tool-btn" title="切換深色 / 淺色模式">
+        <span class="theme-icon">🌙</span>
+      </button>
+
+      <!-- Lock button -->
+      <button id="btnLock" class="tool-btn" title="安全鎖定 (快捷鍵: L)">
+        <span>🔒</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="guide-container">
+    <!-- Sidebar: Module & Page Tree -->
+    <aside class="guide-sidebar" id="guideSidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-title">目錄章節</span>
+        <span id="pageCountBadge" class="badge">186 頁</span>
+      </div>
+      <div class="sidebar-module-list" id="sidebarModuleList">
+        <!-- Dynamically rendered modules and pages -->
+      </div>
+    </aside>
+
+    <!-- Main Content Reading Area -->
+    <main class="guide-main" id="guideMain">
+      <!-- Page Navigation Header -->
+      <div class="page-nav-bar">
+        <div class="page-meta">
+          <span id="metaModuleBadge" class="meta-module-badge">Start Here</span>
+          <span id="metaTypeBadge" class="meta-type-badge">Practitioner Guide</span>
+          <h2 id="metaPageTitle" class="meta-page-title">Start Here · Practitioner 1</h2>
+        </div>
+        <div class="page-quick-actions">
+          <span id="metaPageIndicator" class="page-indicator">第 1 / 186 頁</span>
+          <button id="btnPrevPage" class="nav-arrow-btn" title="上一頁 (←)">‹ 上一頁</button>
+          <button id="btnNextPage" class="nav-arrow-btn" title="下一頁 (→)">下一頁 ›</button>
+        </div>
+      </div>
+
+      <!-- Reading Article -->
+      <article class="guide-article" id="guideArticle">
+        <!-- Rendered text with rich cards -->
+      </article>
+
+      <!-- Bottom Pagination -->
+      <div class="page-bottom-nav">
+        <button id="btnBottomPrev" class="bottom-nav-btn">‹ 上一頁</button>
+        <span id="bottomPageIndicator" class="bottom-page-text">第 1 / 186 頁</span>
+        <button id="btnBottomNext" class="bottom-nav-btn">下一頁 ›</button>
+      </div>
+    </main>
+
+    <!-- Right Side: High-res Original Photo Split View -->
+    <aside class="guide-photo-panel" id="guidePhotoPanel">
+      <div class="photo-panel-header">
+        <div class="photo-header-title">
+          <span>📷 原書高清掃描對照</span>
+          <small id="photoFilename">PG_Cover_IMG_5555.JPG</small>
+        </div>
+        <div class="photo-header-tools">
+          <button id="btnPhotoZoomIn" class="photo-tool-btn" title="放大">➕</button>
+          <button id="btnPhotoZoomOut" class="photo-tool-btn" title="縮小">➖</button>
+          <button id="btnPhotoZoomReset" class="photo-tool-btn" title="重設縮放">↺</button>
+          <button id="btnClosePhoto" class="photo-tool-btn btn-close" title="收起對照視窗">✕</button>
+        </div>
+      </div>
+      <div class="photo-panel-body" id="photoPanelBody">
+        <img id="guidePhotoImg" src="" alt="原書照片掃描檔" draggable="false">
+      </div>
+    </aside>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/guide_data.js"></script>
+  <script src="js/guide_app.js"></script>
+</body>
+</html>

@@ -4,15 +4,15 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+__pycache__/
+*.pyc
 
 # Large binary slide deck (>100MB, slides extracted to slides_extracted/)
 *.pptx
+raw_sources/*.pptx
 
 # Temporary analysis frames and tools
 frame_samples/
 tools/yt-dlp.exe
 node_modules/
 .cache/
-compress_large_videos.ps1
-practitioner guide/_unrelated_media/
-

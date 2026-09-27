@@ -114,6 +114,12 @@
     moduleBadge.style.borderColor = s.module.color;
     moduleName.textContent = `${s.module.code} · ${s.module.name} (${s.module.nameEn})`;
 
+    // Dynamic Practitioner Guide link to current module
+    const btnOpenGuide = document.getElementById('btnOpenGuide');
+    if (btnOpenGuide && s.module) {
+      btnOpenGuide.href = `guide.html?module=${encodeURIComponent(s.module.nameEn || s.module.name)}`;
+    }
+
     // Video Indicator & Clickable Slide Setup
     if (s.hasMedia && s.media) {
       btnMediaHeader.style.display = 'inline-flex';

@@ -64,21 +64,50 @@ node server.js
 
 ---
 
-## 📁 專案架構
+## 📁 專案架構 (Project Structure)
 
 ```text
 EA/
-├── web_app/                # 教學平台前端單頁應用 (HTML5 + CSS3 + Vanilla JS)
-│   ├── css/app.css         # 專業現代深色系視覺樣式與玻璃擬態
-│   ├── js/app.js           # 完整播放控制器、畫筆批註、雙層驗證
-│   ├── js/slides_data.js   # 180 頁投影片索引、影音綁定、引導提問資料
-│   └── index.html          # 主頁面
-├── slides_extracted/       # 180 頁原廠高清投影片圖檔 (Slide 1 ~ 180)
-├── media/                  # 官方多媒體素材、雙語 VTT 字幕檔
-├── curriculum_content/     # 課程模組大綱與教學結構說明
-├── server.js               # 具備 HTTP Basic Auth 與影音串流支援之本機伺服器
-└── README.md
+├── server.js                        # Node.js 伺服器 (HTTP Basic Auth 雙層認證 + 影音串流 + 靜態託管)
+├── package.json                     # Node 專案配置清單
+├── 啟動教材平台.bat                  # Windows 一鍵啟動腳本
+├── README.md                        # 平台完整操作指引與架構說明
+├── .gitignore                       # Git 忽略設定規則
+│
+├── web_app/                         # 教學平台前端單頁應用 (SPA)
+│   ├── css/app.css                  # 深色專業介面與劇場模式樣式
+│   ├── js/app.js                    # 核心控制邏輯、畫筆批註、雙層驗證、快捷鍵
+│   ├── js/slides_data.js            # 180 頁投影片索引、影音綁定、引導問題
+│   └── index.html                   # 教材互動主頁面
+│
+├── practitioner_guide/              # 導師手冊完整資料庫 (Practitioner Guide)
+│   ├── docs/                        # 逐頁萃取之結構化 Markdown 文件 (課程規劃依據)
+│   │   ├── 00_Front_Matter.md       # 封面、引言、目錄、Susan David 介紹
+│   │   ├── 01_Start_Here.md         # 導引章節 (Practitioner P1~P8, Room Map 規範)
+│   │   ├── 02_Opening_the_Question.md # 破冰引導 (Practitioner P1~P5 + 學員頁)
+│   │   ├── 03_Hooked.md             # 被鉤住模組 (Practitioner P1~P10 + 學員頁)
+│   │   ├── 04_Showing_Up.md         # 勇敢現身模組 (Practitioner P1~P10 + 學員頁)
+│   │   ├── 05_Stepping_Out.md       # 抽離跨出模組 (Practitioner P1~P10 + 學員頁)
+│   │   ├── 06_Walking_Your_Why.md   # 踐行價值模組 (Practitioner P1~P12 + 學員頁)
+│   │   ├── 07_Moving_On.md          # 昂首前行模組 (Practitioner P1~P8 + 學員頁)
+│   │   ├── 08_Living_Into_the_Question.md # 結語與反思
+│   │   ├── 09_Appendix.md           # 附錄整合圖表
+│   │   └── PRACTITIONER_GUIDE_COMPLETE.md # 全冊 186 頁單一完整檢索手冊
+│   ├── photos/                      # 186 頁手冊高解析度原檔照片 (具備頁碼識別檔名)
+│   └── practitioner_guide_data.json # 結構化 OCR JSON 資料庫
+│
+├── slides_extracted/                # 180 頁原廠高清投影片 (Slide 1 ~ 180, 1920x1080)
+├── slide_previews/                  # 投影片縮圖目錄
+├── media/                           # 官方多媒體素材、中英對照雙語 VTT 字幕
+├── curriculum/                      # 課程大綱、課堂模組定義與教學規劃
+├── raw_sources/                     # 原廠 PPTX / PPSX 原始檔案封存
+└── tools/                           # 自動化工具庫
+    ├── guide_tools/                 # 手冊頁碼辨識與全文萃取工具
+    ├── subtitles/                   # 雙語字幕轉錄與時間軸校正工具
+    ├── pipeline/                    # 投影片提取與分析腳本
+    └── media_downloader/            # 影片下載與壓縮腳本
 ```
 
 ---
 © 2026 Emotional Agility®. Authorized Facilitator Percy Pofeng Hsu. All rights reserved.
+

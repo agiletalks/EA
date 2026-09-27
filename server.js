@@ -23,7 +23,8 @@ const MIME_TYPES = {
   '.m4a': 'audio/mp4',
   '.mp3': 'audio/mpeg',
   '.vtt': 'text/vtt; charset=utf-8',
-  '.srt': 'text/plain; charset=utf-8'
+  '.srt': 'text/plain; charset=utf-8',
+  '.md': 'text/markdown; charset=utf-8'
 };
 
 const server = http.createServer((req, res) => {
@@ -47,9 +48,10 @@ const server = http.createServer((req, res) => {
   }
 
   let filePath;
-  if (pathname.startsWith('/slides_extracted/')) {
-    filePath = path.join(BASE_DIR, pathname);
-  } else if (pathname.startsWith('/media/')) {
+  if (pathname.startsWith('/slides_extracted/') || 
+      pathname.startsWith('/media/') || 
+      pathname.startsWith('/practitioner_guide/') || 
+      pathname.startsWith('/curriculum/')) {
     filePath = path.join(BASE_DIR, pathname);
   } else {
     filePath = path.join(BASE_DIR, 'web_app', pathname);

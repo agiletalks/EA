@@ -154,6 +154,19 @@ header {
   50% { box-shadow: 0 0 0 8px rgba(225, 29, 72, 0); }
 }
 
+.btn-guide {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--accent-amber);
+  border: 1px solid var(--accent-amber);
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn-guide:hover {
+  background: var(--accent-amber);
+  color: #000;
+  border-color: var(--accent-amber);
+}
+
 .btn-icon {
   padding: 6px 10px;
 }

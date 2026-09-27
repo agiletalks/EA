@@ -13,7 +13,7 @@
   let fontScale = 100;
   let photoZoom = 1.0;
   let isPhotoOpen = false;
-  let isDarkTheme = true;
+  let isDarkTheme = false;
   let searchQuery = '';
 
   const pages = window.PRACTITIONER_GUIDE_PAGES || [];
@@ -138,11 +138,14 @@
     }
 
     const savedTheme = localStorage.getItem('ea_guide_theme');
-    if (savedTheme === 'light') {
+    if (savedTheme === 'dark') {
+      isDarkTheme = true;
+      document.body.classList.add('theme-dark');
+      btnToggleTheme.querySelector('.theme-icon').textContent = '☀️';
+    } else {
       isDarkTheme = false;
       document.body.classList.remove('theme-dark');
-      document.body.classList.add('theme-light');
-      btnToggleTheme.querySelector('.theme-icon').textContent = '☀️';
+      btnToggleTheme.querySelector('.theme-icon').textContent = '🌙';
     }
 
     const savedPhotoOpen = localStorage.getItem('ea_guide_photo_open');
@@ -381,14 +384,12 @@
     btnToggleTheme.addEventListener('click', () => {
       isDarkTheme = !isDarkTheme;
       if (isDarkTheme) {
-        document.body.classList.remove('theme-light');
         document.body.classList.add('theme-dark');
-        btnToggleTheme.querySelector('.theme-icon').textContent = '🌙';
+        btnToggleTheme.querySelector('.theme-icon').textContent = '☀️';
         localStorage.setItem('ea_guide_theme', 'dark');
       } else {
         document.body.classList.remove('theme-dark');
-        document.body.classList.add('theme-light');
-        btnToggleTheme.querySelector('.theme-icon').textContent = '☀️';
+        btnToggleTheme.querySelector('.theme-icon').textContent = '🌙';
         localStorage.setItem('ea_guide_theme', 'light');
       }
     });

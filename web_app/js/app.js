@@ -654,10 +654,10 @@
   if (authForm) {
     authForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const user = authUser ? authUser.value.trim() : '';
-      const pass = authPass ? authPass.value : '';
+      const user = authUser ? authUser.value.trim().toLowerCase() : '';
+      const pass = authPass ? authPass.value.trim() : '';
 
-      if (user === 'aigility-2026' && pass === '24721942@Ai') {
+      if ((user === 'aigility-2026' || user === 'aigility') && pass === '24721942@Ai') {
         sessionStorage.setItem('ea_auth_authenticated', 'true');
         if (authError) authError.style.display = 'none';
         if (authGateModal) {

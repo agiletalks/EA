@@ -5,8 +5,8 @@
 (function () {
   'use strict';
 
-  const AUTH_KEY = 'ea_auth_unlocked';
-  const VALID_USER = 'aigility-2026';
+  const AUTH_KEY = 'ea_auth_authenticated';
+  const VALID_USERS = ['aigility-2026', 'aigility'];
   const VALID_PASS = '24721942@Ai';
 
   let currentPageIndex = 0;
@@ -106,10 +106,10 @@
   }
 
   function submitAuth() {
-    const user = authUsername.value.trim();
+    const user = authUsername.value.trim().toLowerCase();
     const pass = authPassword.value.trim();
 
-    if (user === VALID_USER && pass === VALID_PASS) {
+    if (VALID_USERS.includes(user) && pass === VALID_PASS) {
       sessionStorage.setItem(AUTH_KEY, 'true');
       authModal.style.display = 'none';
       authErrorMsg.textContent = '';

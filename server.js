@@ -5,32 +5,32 @@ const path = require('path');
 const PORT = 3000;
 const BASE_DIR = __dirname;
 
-// Layer 1: HTTP Basic Authentication Credentials
-const AUTH_USER = 'aigility-2026';
-const AUTH_PASS = '24721942@Ai';
-const EXPECTED_AUTH = 'Basic ' + Buffer.from(`${AUTH_USER}:${AUTH_PASS}`).toString('base64');
+// Layer 1: HTTP Basic Authentication Validation
+function checkHttpAuth(authHeader) {
+  if (!authHeader) return false;
+  const match = authHeader.match(/^Basic\s+(.+)$/i);
+  if (!match) return false;
+  try {
+    const decoded = Buffer.from(match[1].trim(), 'base64').toString('utf-8');
+    const colonIdx = decoded.indexOf(':');
+    if (colonIdx === -1) return false;
+    const user = decoded.substring(0, colonIdx).trim().toLowerCase();
+    const pass = decoded.substring(colonIdx + 1).trim();
 
-const MIME_TYPES = {
-  '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.js': 'application/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.svg': 'image/svg+xml',
-  '.mp4': 'video/mp4',
-  '.m4a': 'audio/mp4',
-  '.mp3': 'audio/mpeg',
-  '.vtt': 'text/vtt; charset=utf-8',
-  '.srt': 'text/plain; charset=utf-8',
-  '.md': 'text/markdown; charset=utf-8'
-};
+    // Accept both 'aigility-2026' and 'aigility' with password '24721942@Ai'
+    if ((user === 'aigility-2026' || user === 'aigility') && pass === '24721942@Ai') {
+      return true;
+    }
+  } catch (err) {
+    return false;
+  }
+  return false;
+}
 
 const server = http.createServer((req, res) => {
   // Layer 1: HTTP Basic Auth Verification
   const authHeader = req.headers['authorization'];
-  if (!authHeader || authHeader !== EXPECTED_AUTH) {
+  if (!checkHttpAuth(authHeader)) {
     res.writeHead(401, {
       'WWW-Authenticate': 'Basic realm="Emotional Agility Workshop Platform"',
       'Content-Type': 'text/html; charset=utf-8'
